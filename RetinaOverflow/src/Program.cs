@@ -10,11 +10,12 @@ using OpenTK.Input;
 
 namespace RetinaOverflow
 {
-	class MainClass
+	class RetinaOverflow
 	{
 		public static void Main (string[] args)
 		{
-			Console.WriteLine ("Hello World!");
+			GlobalManager.instance.logging.info("Retina Renderer starting");
+
 			using (var game = new GameWindow())
 			{
 				game.Load += (sender, e) =>
