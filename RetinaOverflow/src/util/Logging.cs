@@ -16,7 +16,8 @@ namespace RetinaOverflow
 	public class Logging
 	{
 		private static BlockingCollection<LogEntry> queue = new BlockingCollection<LogEntry>();
-		public LogLevel logLevel {
+		public LogLevel logLevel 
+		{
 			get;
 			set;
 		}
@@ -79,13 +80,6 @@ namespace RetinaOverflow
 				queue.Add(entry);
 			}
 		}
-
-
-
-
-
-
-
 	}
 }
 

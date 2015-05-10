@@ -39,8 +39,11 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="AssimpNet">
-      <HintPath>..\packages\AssimpNet.3.3.1\lib\net45\AssimpNet.dll</HintPath>
+      <HintPath>lib\AssimpNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -49,14 +52,32 @@
     <Compile Include="src\World.cs" />
     <Compile Include="src\GlobalManager.cs" />
     <Compile Include="src\util\Logging.cs" />
+    <Compile Include="src\ModelLoader.cs" />
+    <Compile Include="src\util\Config.cs" />
+    <Compile Include="src\util\Exception\RetinaException.cs" />
+    <Compile Include="src\util\Exception\ModelLoaderException.cs" />
+    <Compile Include="tests\ModelLoaderTest.cs" />
+    <Compile Include="src\Mesh.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\AssimpNet.3.3.1\build\AssimpNet.targets" Condition="Exists('..\packages\AssimpNet.3.3.1\build\AssimpNet.targets')" />
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="assets\meshes\barbarian.DAE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\meshes\box.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\meshes\box.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
     <Folder Include="src\util\" />
+    <Folder Include="assets\" />
+    <Folder Include="assets\meshes\" />
+    <Folder Include="src\util\Exception\" />
+    <Folder Include="tests\" />
   </ItemGroup>
 </Project>

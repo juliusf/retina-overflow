@@ -16,17 +16,21 @@ namespace RetinaOverflow
 			this.logging = new Logging();
 		}
 			
-		public static GlobalManager instance {
-			get{ 
+		public static GlobalManager instance
+		{
+			get
+			{ 
 				if (theInstance == null) 
 				{
 					theInstance = new GlobalManager();
 				}
-				return theInstance;}
+				return theInstance;
+			}
 			set{ }
 		}
 
-		public Logging logging {
+		public Logging logging 
+		{
 			get;
 			set;
 		}
