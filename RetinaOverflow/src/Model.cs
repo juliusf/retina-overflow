@@ -1,10 +1,11 @@
 ﻿using System;
 using OpenTK.Graphics.OpenGL;
 using System.Collections.Generic;
+using OpenTK;
 
 namespace RetinaOverflow
 {
-    public class Mesh 
+    public class Model 
     {
         public class Subset
         {
@@ -14,9 +15,9 @@ namespace RetinaOverflow
             public int faceCount;
         }
 
-        private uint[] vertexBuffer;
-        private uint[] indexBuffer;
-        private int vertexStride;
+        public Vector3[] vertexBuffer;
+        public Vector3[] indexBuffer;
+        public int vertexStride;
 
         private List<Subset> subsetTable;
 
@@ -24,7 +25,7 @@ namespace RetinaOverflow
         public string materialName;
         public string materialFile;
 
-        public Mesh()
+        public Model()
         {
         }
     }

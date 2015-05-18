@@ -15,6 +15,8 @@ namespace RetinaOverflow
 		public static void Main (string[] args)
 		{
 			GlobalManager.instance.logging.info("Retina Renderer starting");
+            ModelLoader loader = new ModelLoader();
+            var meshes = loader.loadModel("meshes/box.obj");
 
 			using (var game = new GameWindow())
 			{

@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{D983A3D7-432F-4391-84A7-BDC274242002}</ProjectGuid>
+    <ProjectGuid>{FE82DB87-A0B2-4B7B-A08F-EAB7FF9B9814}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RetinaOverflow</RootNamespace>
-    <AssemblyName>RetinaOverflow</AssemblyName>
+    <RootNamespace>RetinaOverflowTests</RootNamespace>
+    <AssemblyName>RetinaOverflowTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -31,48 +31,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="OpenTK">
-      <HintPath>..\packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK.GLControl">
-      <HintPath>..\packages\OpenTK.GLControl.1.1.1589.5942\lib\NET40\OpenTK.GLControl.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="CjClutter.ObjLoader.Loader">
-      <HintPath>lib\CjClutter.ObjLoader.Loader.dll</HintPath>
+    <Reference Include="OpenTK">
+      <HintPath>..\packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Program.cs" />
-    <Compile Include="src\World.cs" />
-    <Compile Include="src\GlobalManager.cs" />
-    <Compile Include="src\util\Logging.cs" />
-    <Compile Include="src\ModelLoader.cs" />
-    <Compile Include="src\util\Config.cs" />
-    <Compile Include="src\util\Exception\RetinaException.cs" />
-    <Compile Include="src\util\Exception\ModelLoaderException.cs" />
-    <Compile Include="src\Model.cs" />
+    <Compile Include="tests\ModelLoaderTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="assets\meshes\box.mtl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="assets\meshes\box.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\" />
-    <Folder Include="src\util\" />
-    <Folder Include="assets\" />
-    <Folder Include="assets\meshes\" />
-    <Folder Include="src\util\Exception\" />
+    <ProjectReference Include="..\RetinaOverflow\RetinaOverflow.csproj">
+      <Project>{D983A3D7-432F-4391-84A7-BDC274242002}</Project>
+      <Name>RetinaOverflow</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

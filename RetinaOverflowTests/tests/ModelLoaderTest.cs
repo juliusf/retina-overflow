@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+using RetinaOverflow;
 
-namespace RetinaOverflow
+namespace RetinaOverflowTests
 {
     [TestFixture()]
     public class ModelLoaderTest
@@ -10,9 +11,9 @@ namespace RetinaOverflow
         public void LoadSimpleModel()
         {
             ModelLoader loader = new ModelLoader();
-            var meshes = loader.loadModel("meshes/box.obj");
+            var theModel = loader.loadModel("meshes/box.obj");
 
-            Assert.AreEqual(meshes.Count, 1);
+            Assert.AreEqual(theModel.vertexBuffer.Length, 8);
         }
     }
 }
