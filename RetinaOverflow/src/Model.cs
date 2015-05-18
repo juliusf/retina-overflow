@@ -16,7 +16,9 @@ namespace RetinaOverflow
         }
 
         public Vector3[] vertexBuffer;
-        public Vector3[] indexBuffer;
+        public Vector3[] normals;
+        public float[] buffer;
+        public int bufferSize;
         public int vertexStride;
 
         private List<Subset> subsetTable;

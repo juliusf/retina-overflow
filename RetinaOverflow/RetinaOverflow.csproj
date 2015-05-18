@@ -57,6 +57,7 @@
     <Compile Include="src\util\Exception\RetinaException.cs" />
     <Compile Include="src\util\Exception\ModelLoaderException.cs" />
     <Compile Include="src\Model.cs" />
+    <Compile Include="src\DataBuffer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

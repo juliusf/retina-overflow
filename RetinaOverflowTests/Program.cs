@@ -1,4 +1,5 @@
 ﻿using System;
+using RetinaOverflow;
 
 namespace RetinaOverflowTests
 {
@@ -8,6 +9,9 @@ namespace RetinaOverflowTests
         {
             var modelLoaderTests = new ModelLoaderTest();
             modelLoaderTests.LoadSimpleModel();
+            modelLoaderTests.testBuffer();
+            modelLoaderTests.testReadBuffer();
+            modelLoaderTests.testReadAndWriteBuffer();
         }
     }
 }
