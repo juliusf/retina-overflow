@@ -7,7 +7,7 @@ using OpenTK.Platform;
 using System.Text.RegularExpressions;
 using OpenTK.Input;
 using ObjLoader.Loader.Data;
-
+using RetinaOverflow.Transform;
 
 namespace RetinaOverflow
 {
@@ -18,7 +18,7 @@ namespace RetinaOverflow
 			GlobalManager.instance.logging.info("Retina Renderer starting");
             ModelLoader loader = new ModelLoader();
             var box = loader.loadModel("meshes/box.obj");
-            var foo = new Quaternion();
+			var foo = new Quaternion();
 
 			using (var game = new GameWindow())
 			{
@@ -52,12 +52,10 @@ namespace RetinaOverflow
 					GL.Ortho(-10.0, 10.0, -10.0, 10.0, 00.0, 4.0);
                     GL.Color3(1.0f,0,0);
 					GL.Begin(PrimitiveType.Triangles);
-                        GlobalManager.instance.logging.error("New Frame");
                         for (int i = 0 ; i < box.bufferSize; i += 6){
                             GL.Color3(Color.MidnightBlue);
                             GL.Vertex3(box.buffer[i], box.buffer[i+1], box.buffer[i+2]);
-
-                            GlobalManager.instance.logging.info(String.Format("{0} {1} {2}", box.buffer[i], box.buffer[i+1], box.buffer[i+2]));
+					
                         } 
                        /* GL.Color3(Color.MidnightBlue);
                         GL.Vertex2(-1.0f, 1.0f);

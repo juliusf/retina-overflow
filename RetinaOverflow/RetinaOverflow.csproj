@@ -7,7 +7,6 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>RetinaOverflow</RootNamespace>
     <AssemblyName>RetinaOverflow</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -17,8 +16,9 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+    <LangVersion>5</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>full</DebugType>
@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>5</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,12 +53,13 @@
     <Compile Include="src\World.cs" />
     <Compile Include="src\GlobalManager.cs" />
     <Compile Include="src\util\Logging.cs" />
-    <Compile Include="src\ModelLoader.cs" />
     <Compile Include="src\util\Config.cs" />
     <Compile Include="src\util\Exception\RetinaException.cs" />
     <Compile Include="src\util\Exception\ModelLoaderException.cs" />
-    <Compile Include="src\Model.cs" />
-    <Compile Include="src\DataBuffer.cs" />
+    <Compile Include="src\model\DataBuffer.cs" />
+    <Compile Include="src\model\Model.cs" />
+    <Compile Include="src\model\ModelLoader.cs" />
+    <Compile Include="src\extensions\Transform.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -75,5 +77,7 @@
     <Folder Include="assets\" />
     <Folder Include="assets\meshes\" />
     <Folder Include="src\util\Exception\" />
+    <Folder Include="src\model\" />
+    <Folder Include="src\extensions\" />
   </ItemGroup>
 </Project>
