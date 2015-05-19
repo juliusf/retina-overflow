@@ -2,21 +2,21 @@
 
 namespace RetinaOverflow
 {
-	namespace Transform
-	{
-		using System;
+    namespace Transform
+    {
+        using System;
         using OpenTK.Graphics;
-		public interface ITransformable
-		{
-			Transformation getTransformation();
-		}
+        public interface ITransformable
+        {
+            Transformation getTransformation();
+        }
 
-		public static class TransformExtension
-		{
-			public static void move(this ITransformable transform, Vector3 direction)
-			{
+        public static class TransformExtension
+        {
+            public static void move(this ITransformable transform, Vector3 direction)
+            {
                 transform.getTransformation().position = Vector3.Add(transform.getTransformation().position, direction);
-			}
+            }
 
             public static void rotate(this ITransformable transform, Quaternion rot)
             {
@@ -63,7 +63,7 @@ namespace RetinaOverflow
 
                 return Matrix4.Mult(Matrix4.CreateFromQuaternion(trans.rotation), Matrix4.CreateTranslation(trans.position));
             }
-		}
+        }
 
         public class Transformation
         {
@@ -85,5 +85,5 @@ namespace RetinaOverflow
                 set;
             }
         }
-	}
+    }
 }
