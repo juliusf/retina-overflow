@@ -19,7 +19,8 @@ namespace RetinaOverflow
             ModelLoader loader = new ModelLoader();
             var box = loader.loadModel("meshes/sponza.obj");
             var camera = new Camera();
-
+            double lastFrameTime = 0;
+            double timeSinceLastUpdate = 0;
             GlobalManager.instance.logging.info(String.Format("View: {0}, {1}, {2}", camera.getViewDirection()[0], camera.getViewDirection()[1], camera.getViewDirection()[2]));
             GlobalManager.instance.logging.info(String.Format("Up: {0}, {1}, {2}", camera.getUpVector()[0], camera.getUpVector()[1], camera.getUpVector()[2]));
             camera.move(new Vector3(100, 25, 0));
@@ -87,6 +88,22 @@ namespace RetinaOverflow
 
                 game.RenderFrame += (sender, e) =>
                 {
+                    if (lastFrameTime != 0)
+                    {
+                        double elapsedTime = e.Time * 0.1 + lastFrameTime * 0.9;
+                        if (timeSinceLastUpdate > 0.5)
+                        {
+                            timeSinceLastUpdate = 0;
+                            game.Title = String.Format("Retina Overflow - {0:0} FPS - {1:F2} ms", 1.0 / elapsedTime, elapsedTime);
+                        }
+                        else
+                        {
+                            timeSinceLastUpdate += e.Time;
+                        }
+                    }
+
+
+                    lastFrameTime = e.Time;
                     // render graphics
                     GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
                     GL.MatrixMode(MatrixMode.Modelview);
@@ -114,7 +131,9 @@ namespace RetinaOverflow
                 // Run the game at 60 updates per second
                 game.Width = 1280;
                 game.Height = 720;
-                game.Run(60.0);
+                game.Title = "Retina Overflow";
+                game.Run();
+
             }
         }
     }
