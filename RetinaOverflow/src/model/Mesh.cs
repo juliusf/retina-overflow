@@ -11,6 +11,8 @@ namespace RetinaOverflow
 	{
 		private Transformation transform;
 		private DataBuffer modelBuffer;
+		public Color color;
+
 		public String name
 		{
 			get;
@@ -21,6 +23,8 @@ namespace RetinaOverflow
 		{
 			this.transform = new Transformation();
 			this.modelBuffer = modelBuffer;
+			var rand = new Random();
+			this.color = Color.FromArgb((byte)rand.Next(), (byte) rand.Next(),(byte) rand.Next());
 		}
 
 		public Transformation getTransformation()
@@ -32,7 +36,7 @@ namespace RetinaOverflow
 		{
 			foreach (var vertex in modelBuffer.readToVec3(BufferChannels.POSITION))
 			{
-				GL.Color3(Color.MidnightBlue);
+				GL.Color3(color);
 				GL.Vertex3(Vector3.Add(this.getWorldPosition(), vertex));
 			}
 		}

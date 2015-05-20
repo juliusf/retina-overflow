@@ -89,12 +89,13 @@ namespace RetinaOverflow
                             buffer.Add(theNormal.Z);
                         }
                     }
-					var dataBuffer = new DataBuffer(channels, buffer.Count / 6);
-					buffer.CopyTo(dataBuffer.theBuffer);
-					var mesh = new Mesh(ref dataBuffer);
-					mesh.name = grp.Name;
-					theModel.addMesh(mesh);
+
                 }
+				var dataBuffer = new DataBuffer(channels, buffer.Count / 6);
+				buffer.CopyTo(dataBuffer.theBuffer);
+				var mesh = new Mesh(ref dataBuffer);
+				mesh.name = grp.Name;
+				theModel.addMesh(ref mesh);
 
 
 

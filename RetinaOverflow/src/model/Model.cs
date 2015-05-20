@@ -22,7 +22,7 @@ namespace RetinaOverflow
 			this.meshes = new List<Mesh>();
         }
 
-		public void addMesh(Mesh mesh)
+		public void addMesh(ref Mesh mesh)
 		{
 			mesh.getTransformation().parent = this;
 			meshes.Add(mesh);
