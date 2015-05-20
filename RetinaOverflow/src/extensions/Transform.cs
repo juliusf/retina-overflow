@@ -1,4 +1,5 @@
 ﻿using OpenTK;
+using System.ComponentModel.Design;
 
 namespace RetinaOverflow
 {
@@ -52,7 +53,7 @@ namespace RetinaOverflow
                 }
                 else
                 {
-                    return Matrix4.Mult(trans.toMat4(), trans.parent.getWorldRotation());
+                    return Matrix4.Mult(transform.toMat4(), trans.parent.getWorldRotation());
                 }
 
             }
@@ -67,6 +68,11 @@ namespace RetinaOverflow
 
         public class Transformation
         {
+			public Transformation()
+			{
+				position = Vector3.Zero;
+				rotation = Quaternion.Identity;
+			}
             public Vector3 position
             {
                 get;

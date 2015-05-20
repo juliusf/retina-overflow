@@ -33,16 +33,15 @@ namespace RetinaOverflow
             var objLoader = objLoaderFactory.Create();
             var fileStream = new FileStream(filePath, FileMode.Open);
             var result = objLoader.Load(fileStream);
-            var buffer = new List<float>();
-            theModel.vertexBuffer = new Vector3[result.Vertices.Count];
-            for (var i = 0;i < result.Vertices.Count; i++ )
-            {
-                theModel.vertexBuffer[i] = new Vector3(result.Vertices[i].X, result.Vertices[i].Y, result.Vertices[i].Z);
-            }
 
+
+			var channels = new HashSet<BufferChannels>();
+			channels.Add(BufferChannels.POSITION);
+			channels.Add(BufferChannels.NORMALS);
 
             foreach (var grp in result.Groups)
-            {
+            {	
+				var buffer = new List<float>();
                 foreach (var face in grp.Faces)
                 {   
                     if (face.Count == 3)
@@ -90,14 +89,16 @@ namespace RetinaOverflow
                             buffer.Add(theNormal.Z);
                         }
                     }
+					var dataBuffer = new DataBuffer(channels, buffer.Count / 6);
+					buffer.CopyTo(dataBuffer.theBuffer);
+					var mesh = new Mesh(ref dataBuffer);
+					mesh.name = grp.Name;
+					theModel.addMesh(mesh);
                 }
+
+
+
             }
-
-            theModel.normals = new Vector3[result.Normals.Count];
-            theModel.buffer = new float[buffer.Count];
-            theModel.bufferSize = buffer.Count;
-            buffer.CopyTo(theModel.buffer);
-
             return theModel;
         }
             
