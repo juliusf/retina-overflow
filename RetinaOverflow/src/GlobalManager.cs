@@ -5,38 +5,38 @@ using RetinaOverflow;
 
 namespace RetinaOverflow
 {
-	public class GlobalManager
-	{	
-		private static GlobalManager theInstance;
-		private GameWindow game;
+    public class GlobalManager
+    {
+        private static GlobalManager theInstance;
+        private GameWindow game;
 
-		private GlobalManager()
-		{
-			this.game = new GameWindow();
-			this.logging = new Logging();
-		}
-			
-		public static GlobalManager instance
-		{
-			get
-			{ 
-				if (theInstance == null) 
-				{
-					theInstance = new GlobalManager();
-				}
-				return theInstance;
-			}
-			set{ }
-		}
+        private GlobalManager()
+        {
+            this.game = new GameWindow();
+            this.logging = new Logging();
+        }
 
-		public Logging logging 
-		{
-			get;
-			set;
-		}
+        public static GlobalManager instance
+        {
+            get
+            { 
+                if (theInstance == null)
+                {
+                    theInstance = new GlobalManager();
+                }
+                return theInstance;
+            }
+            set{ }
+        }
+
+        public Logging logging
+        {
+            get;
+            set;
+        }
 
 
-	}
+    }
 
 
 }

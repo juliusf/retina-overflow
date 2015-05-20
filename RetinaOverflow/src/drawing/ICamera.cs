@@ -4,9 +4,9 @@ using RetinaOverflow.Transform;
 
 namespace RetinaOverflow
 {
-	public interface ICamera : ITransformable
-	{
-		Matrix4 getViewMatrix();
-	}
+    public interface ICamera : ITransformable
+    {
+        Matrix4 getViewMatrix();
+    }
 }
 

@@ -7,6 +7,7 @@ namespace RetinaOverflow
     {
         using System;
         using OpenTK.Graphics;
+
         public interface ITransformable
         {
             Transformation getTransformation();
@@ -21,13 +22,13 @@ namespace RetinaOverflow
 
             public static void rotate(this ITransformable transform, Quaternion rot)
             {
-				var trans = transform.getTransformation();
-				trans.rotation = Quaternion.Multiply(trans.rotation, rot);
+                var trans = transform.getTransformation();
+                trans.rotation = Quaternion.Multiply(trans.rotation, rot);
             }
 
             public static Vector3 getPosition(this ITransformable transform)
             {
-				return transform.getTransformation().position;
+                return transform.getTransformation().position;
             }
 
             public static Vector3 getWorldPosition(this ITransformable transform)
@@ -63,26 +64,27 @@ namespace RetinaOverflow
             {
                 var trans = transform.getTransformation();
 
-				return Matrix4.Mult( Matrix4.CreateFromQuaternion(trans.rotation), Matrix4.CreateTranslation(trans.position) );
+                return Matrix4.Mult(Matrix4.CreateFromQuaternion(trans.rotation), Matrix4.CreateTranslation(trans.position));
             }
 
-			public static Matrix4 rotationToMat4(this ITransformable transform)
-			{
-				var trans = transform.getTransformation();
+            public static Matrix4 rotationToMat4(this ITransformable transform)
+            {
+                var trans = transform.getTransformation();
 
-				return Matrix4.CreateFromQuaternion(trans.rotation);
+                return Matrix4.CreateFromQuaternion(trans.rotation);
 
-			}
+            }
 
         }
 
         public class Transformation
         {
-			public Transformation()
-			{
-				position = Vector3.Zero;
-				rotation = Quaternion.Identity;
-			}
+            public Transformation()
+            {
+                position = Vector3.Zero;
+                rotation = Quaternion.Identity;
+            }
+
             public Vector3 position
             {
                 get;

@@ -2,9 +2,9 @@
 
 namespace RetinaOverflow
 {
-	public interface IDrawable
-	{
-		void draw();
-	}
+    public interface IDrawable
+    {
+        void draw();
+    }
 }
 
