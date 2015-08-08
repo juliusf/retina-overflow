@@ -42,7 +42,7 @@ namespace RetinaOverflow
             
         public static readonly BufferChannels POSITION = new BufferChannels("Position", 3, 0);
         public static readonly BufferChannels NORMALS = new BufferChannels("Normals", 3, BufferChannels.POSITION.size);
-        public static readonly BufferChannels TEXCOORDS = new BufferChannels("TexCoords", 3, BufferChannels.POSITION.size + BufferChannels.NORMALS.size);
+        public static readonly BufferChannels TEXCOORDS = new BufferChannels("TexCoords", 2, BufferChannels.POSITION.size + BufferChannels.NORMALS.size);
 
     }
     

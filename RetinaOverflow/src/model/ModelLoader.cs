@@ -14,9 +14,10 @@ namespace RetinaOverflow
 {
     public class ModelLoader
     {
-        public ModelLoader()
+        private World world;
+        public ModelLoader(World world)
         {
-
+            this.world = world;
 
 
         }
@@ -36,6 +37,9 @@ namespace RetinaOverflow
             var channels = new HashSet<BufferChannels>();
             channels.Add(BufferChannels.POSITION);
             channels.Add(BufferChannels.NORMALS);
+            channels.Add(BufferChannels.TEXCOORDS);
+
+            Dictionary<String, Material> materialSet = new Dictionary<String, Material>();
 
             foreach (var grp in result.Groups)
             {	
@@ -48,6 +52,8 @@ namespace RetinaOverflow
                         {
                             var theVertex = result.Vertices[face[i].VertexIndex - 1];
                             var theNormal = result.Normals[face[i].NormalIndex - 1];
+                            var theTexCoord = result.Textures[face[i].TextureIndex -1];
+
                             buffer.Add(theVertex.X);
                             buffer.Add(theVertex.Y);
                             buffer.Add(theVertex.Z);
@@ -55,6 +61,9 @@ namespace RetinaOverflow
                             buffer.Add(theNormal.X);
                             buffer.Add(theNormal.Y);
                             buffer.Add(theNormal.Z);
+
+                            buffer.Add(theTexCoord.X);
+                            buffer.Add(theTexCoord.Y);
                         }
                     }
                     else if (face.Count == 4) // quads
@@ -64,6 +73,8 @@ namespace RetinaOverflow
                         {
                             var theVertex = result.Vertices[face[i].VertexIndex - 1];
                             var theNormal = result.Normals[face[i].NormalIndex - 1];
+                            var theTexCoord = result.Textures[face[i].TextureIndex -1];
+
                             buffer.Add(theVertex.X);
                             buffer.Add(theVertex.Y);
                             buffer.Add(theVertex.Z);
@@ -71,6 +82,9 @@ namespace RetinaOverflow
                             buffer.Add(theNormal.X);
                             buffer.Add(theNormal.Y);
                             buffer.Add(theNormal.Z);
+
+                            buffer.Add(theTexCoord.X);
+                            buffer.Add(theTexCoord.Y);
                         }
 
                         for (var i = 2; i <= 4; i++)
@@ -78,6 +92,8 @@ namespace RetinaOverflow
                             var idx = i == 4 ? 0 : i; // hack to correctly choose last face if we're using quads
                             var theVertex = result.Vertices[face[idx].VertexIndex - 1];
                             var theNormal = result.Normals[face[idx].NormalIndex - 1];
+                            var theTexCoord = result.Textures[face[idx].TextureIndex -1];
+
                             buffer.Add(theVertex.X);
                             buffer.Add(theVertex.Y);
                             buffer.Add(theVertex.Z);
@@ -85,14 +101,27 @@ namespace RetinaOverflow
                             buffer.Add(theNormal.X);
                             buffer.Add(theNormal.Y);
                             buffer.Add(theNormal.Z);
+
+                            buffer.Add(theTexCoord.X);
+                            buffer.Add(theTexCoord.Y);
                         }
                     }
 
                 }
-                var dataBuffer = new DataBuffer(channels, buffer.Count / 6);
+                var dataBuffer = new DataBuffer(channels, buffer.Count / 8);
                 buffer.CopyTo(dataBuffer.theBuffer);
                 var mesh = new Mesh(ref dataBuffer);
+
+
                 mesh.name = grp.Name;
+
+                if (! world.materials.ContainsKey(grp.Material.Name))
+                {
+                    world.materials.Add(grp.Material.Name, MaterialFactory.createMaterial(grp.Material));
+                }
+
+                mesh.material = world.materials[grp.Material.Name];
+
                 theModel.addMesh(ref mesh);
 
 

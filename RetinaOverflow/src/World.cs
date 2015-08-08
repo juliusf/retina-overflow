@@ -8,13 +8,15 @@ namespace RetinaOverflow
         private List<Model> scene; // TODO: Convert to octree or similar fast data Structure
         private ModelLoader loader;
 
+        public Dictionary<String, Material> materials;
 
         public static Camera activeCam;
 
         public World()
         {
             scene = new List<Model>();
-            loader = new ModelLoader();            
+            loader = new ModelLoader(this);
+            materials = new Dictionary<String, Material>();
         }
 
         public void initializeWorld()
@@ -22,6 +24,11 @@ namespace RetinaOverflow
             foreach (var model in scene)
             {
                 model.initialize();
+            }
+
+            foreach (var material in materials.Values)
+            {
+                material.initialize();
             }
         }
 

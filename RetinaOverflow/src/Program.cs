@@ -115,7 +115,7 @@ namespace RetinaOverflow
                     GL.LoadMatrix(ref viewMatrix);
 
                     //GL.Ortho(-10.0, 10.0, -10.0, 10.0, 00.0, 4.0);
-                    GL.Color3(1.0f, 0, 0);
+             //       GL.Color3(1.0f, 0, 0);
 
                     theWorld.draw();
 

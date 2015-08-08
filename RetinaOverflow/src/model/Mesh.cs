@@ -23,6 +23,8 @@ namespace RetinaOverflow
             set;
         }
 
+        public Material material;
+
         public Mesh(ref DataBuffer modelBuffer)
         {
             this.transform = new Transformation();
@@ -57,15 +59,42 @@ namespace RetinaOverflow
                 Vector3.Add(ref tmp2, ref vert, out tmpVec);
                 GL.Vertex3(tmpVec);
             } */
-
+            /*
             GL.Color3(color);
             GL.EnableClientState(ArrayCap.VertexArray);
             GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO);
             GL.VertexPointer(3, VertexPointerType.Float, modelBuffer.strideInBytes,0); // TODO: get the offset more easily accsessible in modelBuffer
+            //GL.DrawArrays(PrimitiveType.Triangles, 0, modelBuffer.size);
+
+            */
+            GL.Disable(EnableCap.ColorArray);
+
+            GL.EnableClientState(ArrayCap.VertexArray);
+            GL.EnableClientState(ArrayCap.NormalArray);
+            GL.EnableClientState(ArrayCap.TextureCoordArray);
+
+            GL.Enable(EnableCap.Texture2D);
+            GL.BindTexture(TextureTarget.Texture2D, material.diffuseTextureID);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO);
+            GL.TexCoordPointer(2, TexCoordPointerType.Float, modelBuffer.strideInBytes, 6*4);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO);
+            GL.NormalPointer(NormalPointerType.Float, modelBuffer.strideInBytes, 3*4);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO);
+            GL.VertexPointer(3, VertexPointerType.Float, modelBuffer.strideInBytes,0);
+
             GL.DrawArrays(PrimitiveType.Triangles, 0, modelBuffer.size);
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             GL.DisableClientState(ArrayCap.VertexArray);
+            GL.DisableClientState(ArrayCap.NormalArray);
+            GL.DisableClientState(ArrayCap.TextureCoordArray);
+
+            //GL.DrawArrays(PrimitiveType.Triangles, 0, modelBuffer.size);
+            //GL.DrawElements(
+            //GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+          //  GL.DisableClientState(ArrayCap.VertexArray);
         }
     }
 }
