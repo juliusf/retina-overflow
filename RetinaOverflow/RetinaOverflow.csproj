@@ -60,12 +60,12 @@
     <Compile Include="src\model\Model.cs" />
     <Compile Include="src\model\ModelLoader.cs" />
     <Compile Include="src\extensions\Transform.cs" />
-    <Compile Include="src\drawing\ICamera.cs" />
-    <Compile Include="src\drawing\Camera.cs" />
-    <Compile Include="src\drawing\IDrawable.cs" />
     <Compile Include="src\model\Mesh.cs" />
     <Compile Include="src\util\Comparison.cs" />
     <Compile Include="src\extensions\Drawable.cs" />
+    <Compile Include="src\drawing\Camera.cs" />
+    <Compile Include="src\drawing\ICamera.cs" />
+    <Compile Include="src\drawing\IDrawable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -91,6 +91,6 @@
     <Folder Include="src\util\Exception\" />
     <Folder Include="src\model\" />
     <Folder Include="src\extensions\" />
-    <Folder Include="src\drawing\" />
+    <Folder Include="src\subsystems\" />
   </ItemGroup>
 </Project>
