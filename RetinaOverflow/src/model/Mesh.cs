@@ -36,7 +36,7 @@ namespace RetinaOverflow
 
         public void draw()
         {
-           /* GL.Begin(PrimitiveType.Triangles);
+            GL.Begin(PrimitiveType.Triangles);
             GL.Color3(color);
             foreach (Vector3 vertex in modelBuffer)
             {
@@ -46,8 +46,8 @@ namespace RetinaOverflow
                 Vector3.Add(ref tmp2, ref vert, out tmpVec);
                 GL.Vertex3(tmpVec);
             }
-            */
-            this.drawAxes();
+
+
         }
     }
 }

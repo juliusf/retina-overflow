@@ -15,6 +15,7 @@ namespace RetinaOverflowTests
 
             var mathTests = new MathTests();
             mathTests.testDirection();
+            mathTests.testRotation();
         }
     }
 }

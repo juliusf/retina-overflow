@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using OpenTK;
 using RetinaOverflow.Transform;
 using NUnit.Framework;
+using RetinaOverflow.Drawable;
 
 namespace RetinaOverflow
 {
@@ -15,6 +16,7 @@ namespace RetinaOverflow
         public string materialName;
         public string materialFile;
         public List<Mesh> meshes;
+        public bool drawAxes = false;
 
 
         public Model()
@@ -39,6 +41,10 @@ namespace RetinaOverflow
             foreach (var mesh in meshes)
             {
                 mesh.draw();
+                if (this.drawAxes)
+                {
+                    mesh.drawAxes();
+                }
             }
         }
 
