@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace RetinaOverflow
 {
-    public class Camera : ICamera
+    public class Camera : ICamera, ITransformable
     {
 
         private Transformation transform;

@@ -12,6 +12,9 @@ namespace RetinaOverflowTests
             modelLoaderTests.testBuffer();
             modelLoaderTests.testReadBuffer();
             modelLoaderTests.testReadAndWriteBuffer();
+
+            var mathTests = new MathTests();
+            mathTests.testDirection();
         }
     }
 }
