@@ -31,6 +31,14 @@ namespace RetinaOverflow
             meshes.Add(mesh);
         }
 
+        public void initialize()
+        {
+            foreach (var mesh in meshes)
+            {
+                mesh.initialize();
+            }
+        }
+
         public Transformation getTransformation()
         {
             return this.transform;

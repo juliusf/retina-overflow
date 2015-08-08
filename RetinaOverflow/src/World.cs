@@ -19,7 +19,10 @@ namespace RetinaOverflow
 
         public void initializeWorld()
         {
-
+            foreach (var model in scene)
+            {
+                model.initialize();
+            }
         }
 
         public void addModel(ref Model model)

@@ -50,9 +50,20 @@ namespace RetinaOverflow
     {
         public  float[] theBuffer;
         public int bufferLength;
+        public int bufferLengthInBytes
+        {
+            get{return bufferLength * 4;}
+        }
         private HashSet<BufferChannels> dataChannelsInBuffer;
 
         public int stride = 0;
+        public int strideInBytes
+        {
+            get{
+                return stride * 4;
+            }
+        }
+        public int size = 0;
 
         public DataBuffer(HashSet<BufferChannels> channels, int size)
         {
@@ -69,6 +80,7 @@ namespace RetinaOverflow
 
             this.theBuffer = new float[size * stride];
             this.bufferLength = size * stride;
+            this.size = size;
         }
 
         public List<float> getChannelItems()

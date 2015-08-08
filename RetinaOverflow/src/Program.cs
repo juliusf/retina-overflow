@@ -20,7 +20,7 @@ namespace RetinaOverflow
             theWorld.addModel("meshes/sponza.obj");
             var camera = new Camera();
             World.activeCam = camera;
-
+            theWorld.initializeWorld();
             double lastFrameTime = 0;
             double timeSinceLastUpdate = 0;
 
