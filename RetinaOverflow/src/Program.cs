@@ -24,9 +24,11 @@ namespace RetinaOverflow
             GlobalManager.instance.logging.info(String.Format("View: {0}, {1}, {2}", camera.getViewDirection()[0], camera.getViewDirection()[1], camera.getViewDirection()[2]));
             GlobalManager.instance.logging.info(String.Format("Up: {0}, {1}, {2}", camera.getUpVector()[0], camera.getUpVector()[1], camera.getUpVector()[2]));
             camera.move(new Vector3(100, 25, 0));
-            camera.lookAt(new Vector3(0, 0, 0));
+           // camera.lookAt(new Vector3(0, 0, 0));
             //camera.move(new Vector3(-))
-            float time = 0;
+            MouseState current;
+            MouseState previous = Mouse.GetState();
+
             using (var game = new GameWindow())
             {
                 game.Load += (sender, e) =>
@@ -73,16 +75,20 @@ namespace RetinaOverflow
                     {
                         camera.move(Vector3.Multiply(camera.getRightVector(), movementSpeed));
                     }
+                        current = Mouse.GetState();
+                        if (current != previous)
+                        {
+                            float mouseSpeed = 0.01f * (float) e.Time;
+                            int xdelta = current.X - previous.X;
+                            int ydelta = current.Y - previous.Y;
+                            int zdelta = current.Wheel - previous.Wheel;
+                            camera.look(xdelta * mouseSpeed, ydelta * mouseSpeed);
+
+                        }
+                        previous = current;
 
 
 
-                };
-
-                game.MouseMove += (sender, e) =>
-                {
-                    float lookspeed = 0.0009f;
-                    var viewDir = camera.getViewDirection();
-                    camera.look(e.XDelta * lookspeed, e.YDelta * lookspeed);
 
                 };
 
@@ -108,12 +114,11 @@ namespace RetinaOverflow
                     GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
                     GL.MatrixMode(MatrixMode.Modelview);
                     var viewMatrix = camera.getViewMatrix();
-                    var lookAt = Matrix4.LookAt(camera.getPosition(), new Vector3(0, 0, 0), camera.getUpVector());
                     GL.LoadMatrix(ref viewMatrix);
 
                     //GL.Ortho(-10.0, 10.0, -10.0, 10.0, 00.0, 4.0);
                     GL.Color3(1.0f, 0, 0);
-                    GL.Begin(PrimitiveType.Triangles);
+
                     box.draw();
 					
 
@@ -132,6 +137,7 @@ namespace RetinaOverflow
                 game.Width = 1280;
                 game.Height = 720;
                 game.Title = "Retina Overflow";
+                game.CursorVisible = false;
                 game.Run();
 
             }

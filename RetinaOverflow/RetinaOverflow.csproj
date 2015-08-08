@@ -65,6 +65,7 @@
     <Compile Include="src\drawing\IDrawable.cs" />
     <Compile Include="src\model\Mesh.cs" />
     <Compile Include="src\util\Comparison.cs" />
+    <Compile Include="src\extensions\Drawable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

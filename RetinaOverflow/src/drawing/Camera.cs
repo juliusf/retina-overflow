@@ -51,12 +51,11 @@ namespace RetinaOverflow
 
         public void look(float deltaX, float deltaY)
         {
-            var qy = Quaternion.FromAxisAngle(new Vector3(1, 0, 0), -deltaY);
-            var qx = Quaternion.FromAxisAngle(new Vector3(0, 1, 0), -deltaX);
+            var qy = Quaternion.FromAxisAngle(new Vector3(0, 1, 0), -deltaY);
+            var qx = Quaternion.FromAxisAngle(new Vector3(1,0,0), -deltaX);
 
-            var delta = Quaternion.Multiply(qx, qy);
-
-            this.rotate(delta);
+            this.rotate(qy);
+            this.rotate(qx);
         }
     }
 }

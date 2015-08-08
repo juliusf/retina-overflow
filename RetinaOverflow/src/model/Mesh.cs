@@ -4,6 +4,7 @@ using System.Drawing;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK;
+using RetinaOverflow.Drawable;
 
 namespace RetinaOverflow
 {
@@ -12,7 +13,8 @@ namespace RetinaOverflow
         private Transformation transform;
         private DataBuffer modelBuffer;
         public Color color;
-
+        public Vector3 tmpVec;
+        public Vector3 tmp2;
         public String name
         {
             get;
@@ -34,11 +36,18 @@ namespace RetinaOverflow
 
         public void draw()
         {
-            foreach (var vertex in modelBuffer.readToVec3(BufferChannels.POSITION))
+           /* GL.Begin(PrimitiveType.Triangles);
+            GL.Color3(color);
+            foreach (Vector3 vertex in modelBuffer)
             {
-                GL.Color3(color);
-                GL.Vertex3(Vector3.Add(this.getWorldPosition(), vertex));
+                Vector3 vert;
+                vert = vertex;
+                tmp2 = this.getWorldPosition();
+                Vector3.Add(ref tmp2, ref vert, out tmpVec);
+                GL.Vertex3(tmpVec);
             }
+            */
+            this.drawAxes();
         }
     }
 }
