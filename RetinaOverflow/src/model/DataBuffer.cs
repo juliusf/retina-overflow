@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace RetinaOverflow
 
     }
     
-    public class DataBuffer
+    public class DataBuffer : IEnumerable
     {
         public  float[] theBuffer;
         public int bufferLength;
@@ -115,6 +116,35 @@ namespace RetinaOverflow
 
             return ret;
         }
+
+        public IEnumerator<Vector3> GetPositions()
+        {
+            var channel = BufferChannels.POSITION;
+            if (!this.dataChannelsInBuffer.Contains(channel))
+            {
+                Debug.Assert( (false), "the buffer does not contain the channel desired");
+            }
+            //var ret = new List<Vector3>();
+            var vec = new Vector3();
+            for (int i = channel.offset; i < this.bufferLength; i += this.stride)
+            {
+                
+                vec.X = this.theBuffer[i];
+                vec.Y = this.theBuffer[i + 1];
+                vec.Z = this.theBuffer[i + 2];
+                yield return vec;
+            }
+            
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator) GetPositions();
+        }
+
+
+
+
           
 
     }

@@ -16,6 +16,7 @@ namespace RetinaOverflow
         public string materialFile;
         public List<Mesh> meshes;
 
+
         public Model()
         {
             this.transform = new Transformation();
