@@ -84,60 +84,171 @@
     <None Include="assets\meshes\sponza.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="assets\textures\background.png" />
-    <None Include="assets\textures\backgroundBGR.png" />
-    <None Include="assets\textures\background_bump.png" />
-    <None Include="assets\textures\chain_texture.png" />
-    <None Include="assets\textures\chain_texture_bump.png" />
-    <None Include="assets\textures\chain_texture_mask.png" />
-    <None Include="assets\textures\gi_flag.png" />
-    <None Include="assets\textures\lion.png" />
-    <None Include="assets\textures\lion2_bump.png" />
-    <None Include="assets\textures\lion_bump.png" />
-    <None Include="assets\textures\spnza_bricks_a_bump.png" />
-    <None Include="assets\textures\spnza_bricks_a_diff.png" />
-    <None Include="assets\textures\spnza_bricks_a_spec.png" />
-    <None Include="assets\textures\sponza_arch_bump.png" />
-    <None Include="assets\textures\sponza_arch_diff.png" />
-    <None Include="assets\textures\sponza_arch_spec.png" />
-    <None Include="assets\textures\sponza_ceiling_a_diff.png" />
-    <None Include="assets\textures\sponza_ceiling_a_spec.png" />
-    <None Include="assets\textures\sponza_column_a_bump.png" />
-    <None Include="assets\textures\sponza_column_a_diff.png" />
-    <None Include="assets\textures\sponza_column_a_spec.png" />
-    <None Include="assets\textures\sponza_column_b_bump.png" />
-    <None Include="assets\textures\sponza_column_b_diff.png" />
-    <None Include="assets\textures\sponza_column_b_spec.png" />
-    <None Include="assets\textures\sponza_column_c_bump.png" />
-    <None Include="assets\textures\sponza_column_c_diff.png" />
-    <None Include="assets\textures\sponza_column_c_spec.png" />
-    <None Include="assets\textures\sponza_curtain_blue_diff.png" />
-    <None Include="assets\textures\sponza_curtain_diff.png" />
-    <None Include="assets\textures\sponza_curtain_green_diff.png" />
-    <None Include="assets\textures\sponza_details_diff.png" />
-    <None Include="assets\textures\sponza_details_spec.png" />
-    <None Include="assets\textures\sponza_fabric_blue_diff.png" />
-    <None Include="assets\textures\sponza_fabric_diff.png" />
-    <None Include="assets\textures\sponza_fabric_green_diff.png" />
-    <None Include="assets\textures\sponza_fabric_spec.png" />
-    <None Include="assets\textures\sponza_flagpole_diff.png" />
-    <None Include="assets\textures\sponza_flagpole_spec.png" />
-    <None Include="assets\textures\sponza_floor_a_diff.png" />
-    <None Include="assets\textures\sponza_floor_a_spec.png" />
-    <None Include="assets\textures\sponza_roof_diff.png" />
-    <None Include="assets\textures\sponza_thorn_bump.png" />
-    <None Include="assets\textures\sponza_thorn_diff.png" />
-    <None Include="assets\textures\sponza_thorn_mask.png" />
-    <None Include="assets\textures\sponza_thorn_spec.png" />
-    <None Include="assets\textures\vase_bump.png" />
-    <None Include="assets\textures\vase_dif.png" />
-    <None Include="assets\textures\vase_hanging.png" />
-    <None Include="assets\textures\vase_plant.png" />
-    <None Include="assets\textures\vase_plant_mask.png" />
-    <None Include="assets\textures\vase_plant_spec.png" />
-    <None Include="assets\textures\vase_round.png" />
-    <None Include="assets\textures\vase_round_bump.png" />
-    <None Include="assets\textures\vase_round_spec.png" />
+    <None Include="assets\textures\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\backgroundBGR.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\background_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\chain_texture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\chain_texture_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\chain_texture_mask.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\gi_flag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\lion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\lion2_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\lion_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\spnza_bricks_a_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\spnza_bricks_a_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\spnza_bricks_a_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_arch_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_arch_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_arch_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_ceiling_a_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_ceiling_a_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_column_a_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_column_a_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_column_a_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_column_b_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_column_b_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_column_b_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_column_c_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_column_c_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_column_c_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_curtain_blue_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_curtain_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_curtain_green_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_details_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_details_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_fabric_blue_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_fabric_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_fabric_green_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_fabric_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_flagpole_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_flagpole_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_floor_a_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_floor_a_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_roof_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_thorn_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_thorn_diff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_thorn_mask.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\sponza_thorn_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\vase_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\vase_dif.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\vase_hanging.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\vase_plant.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\vase_plant_mask.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\vase_plant_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\vase_round.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\vase_round_bump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\vase_round_spec.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\textures\fallback.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
