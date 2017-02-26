@@ -13,9 +13,10 @@ namespace RetinaOverflowTests
         [Test()]
         public void LoadSimpleModel()
         {
+            /*
             ModelLoader loader = new ModelLoader();
             var theModel = loader.loadModel("meshes/box.obj");
-
+            */
            // Assert.AreEqual(theModel.bu);
         }
 

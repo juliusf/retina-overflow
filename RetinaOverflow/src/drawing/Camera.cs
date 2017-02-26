@@ -44,19 +44,19 @@ namespace RetinaOverflow
         {
             var transform = this.getTransformation();
             var lookAtMatrix = Matrix4.LookAt(transform.position, point, this.getUpVector()).Inverted();
-
-            //transform.position = lookAtMatrix.ExtractTranslation();
             transform.rotation = lookAtMatrix.ExtractRotation(true);
         }
 
         public void look(float deltaX, float deltaY)
         {
+            var transform = this.getTransformation();
             var rotation = this.getTransformation().rotation;
+
             var qy = Quaternion.FromAxisAngle(new Vector3(1, 0, 0), -deltaY);
-            var qx = Quaternion.FromAxisAngle(new Vector3(0,-1,0), deltaX);
-
-
-            this.rotate(Quaternion.Multiply(qx,qy));
+            var qx = Quaternion.FromAxisAngle(new Vector3(0, -1,0), deltaX);
+            
+            this.rotate(qy.Normalized());
+            this.rotate(qx.Normalized());
         }
     }
 }

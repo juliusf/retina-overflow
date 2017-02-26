@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using OpenTK.Graphics.OpenGL;
 namespace RetinaOverflow
 {
     public class World
@@ -30,6 +30,8 @@ namespace RetinaOverflow
             {
                 material.initialize();
             }
+
+            var foo = GL.IsVertexArray(1);
         }
 
         public void addModel(ref Model model)

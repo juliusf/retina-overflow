@@ -63,7 +63,7 @@ namespace RetinaOverflow
                             buffer.Add(theNormal.Z);
 
                             buffer.Add(theTexCoord.X);
-                            buffer.Add(theTexCoord.Y);
+                            buffer.Add(1 - theTexCoord.Y);
                         }
                     }
                     else if (face.Count == 4) // quads
@@ -84,7 +84,7 @@ namespace RetinaOverflow
                             buffer.Add(theNormal.Z);
 
                             buffer.Add(theTexCoord.X);
-                            buffer.Add(theTexCoord.Y);
+                            buffer.Add(1 - theTexCoord.Y);
                         }
 
                         for (var i = 2; i <= 4; i++)
@@ -103,7 +103,7 @@ namespace RetinaOverflow
                             buffer.Add(theNormal.Z);
 
                             buffer.Add(theTexCoord.X);
-                            buffer.Add(theTexCoord.Y);
+                            buffer.Add(1 - theTexCoord.Y);
                         }
                     }
 

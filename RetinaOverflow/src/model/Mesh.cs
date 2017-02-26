@@ -12,11 +12,10 @@ namespace RetinaOverflow
     {
         private Transformation transform;
         private DataBuffer modelBuffer;
-        private int ID_VBO;
+        private int ID_VBO = -1;
+        private int ID_VAO = -1;
 
         public Color color;
-        public Vector3 tmpVec;
-        public Vector3 tmp2;
         public String name
         {
             get;
@@ -29,8 +28,6 @@ namespace RetinaOverflow
         {
             this.transform = new Transformation();
             this.modelBuffer = modelBuffer;
-            var rand = new Random();
-            this.color = Color.FromArgb((byte)rand.Next(), (byte)rand.Next(), (byte)rand.Next());
         }
 
         public Transformation getTransformation()
@@ -44,57 +41,51 @@ namespace RetinaOverflow
             GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO); // Set it up as array buffer
             GL.BufferData(BufferTarget.ArrayBuffer, (IntPtr)modelBuffer.bufferLengthInBytes, modelBuffer.theBuffer, BufferUsageHint.StaticDraw); // Copy the buffer data to the graphics card
 
+            GL.GenVertexArrays(1, out ID_VAO);
+            GL.BindVertexArray(ID_VAO);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO); // Set it up as array buffer
+            GL.EnableVertexAttribArray(0);
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, modelBuffer.strideInBytes, 0);  // position
+
+            GL.EnableVertexAttribArray(1);
+            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, modelBuffer.strideInBytes, 3 * 4);  // normals
+            GL.EnableVertexAttribArray(2);
+            GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, modelBuffer.strideInBytes, 2 * 3 * 4); // tex coords
+            GL.EnableVertexAttribArray(0);
+            GL.BindVertexArray(0);
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0); // This seems to be good practice
+
+            var foo = GL.IsVertexArray(1);
+            GL.BindVertexArray(ID_VAO);
         }
 
         public void draw()
         {
-       /*     GL.Begin(PrimitiveType.Triangles);
-            GL.Color3(color);
-            foreach (Vector3 vertex in modelBuffer)
-            {
-                Vector3 vert;
-                vert = vertex;
-                tmp2 = this.getWorldPosition();
-                Vector3.Add(ref tmp2, ref vert, out tmpVec);
-                GL.Vertex3(tmpVec);
-            } */
-            /*
-            GL.Color3(color);
-            GL.EnableClientState(ArrayCap.VertexArray);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO);
-            GL.VertexPointer(3, VertexPointerType.Float, modelBuffer.strideInBytes,0); // TODO: get the offset more easily accsessible in modelBuffer
-            //GL.DrawArrays(PrimitiveType.Triangles, 0, modelBuffer.size);
-
-            */
-            GL.Disable(EnableCap.ColorArray);
-
-            GL.EnableClientState(ArrayCap.VertexArray);
-            GL.EnableClientState(ArrayCap.NormalArray);
-            GL.EnableClientState(ArrayCap.TextureCoordArray);
 
             GL.Enable(EnableCap.Texture2D);
+            handleGLError();
+            GL.ActiveTexture(TextureUnit.Texture0);
+            handleGLError();
             GL.BindTexture(TextureTarget.Texture2D, material.diffuseTextureID);
-
+            handleGLError();
             GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO);
-            GL.TexCoordPointer(2, TexCoordPointerType.Float, modelBuffer.strideInBytes, 6*4);
+            handleGLError();
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO);
-            GL.NormalPointer(NormalPointerType.Float, modelBuffer.strideInBytes, 3*4);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO);
-            GL.VertexPointer(3, VertexPointerType.Float, modelBuffer.strideInBytes,0);
-
+            GL.BindVertexArray(ID_VAO);
+            handleGLError();
             GL.DrawArrays(PrimitiveType.Triangles, 0, modelBuffer.size);
+            handleGLError();
+        }
 
-            GL.DisableClientState(ArrayCap.VertexArray);
-            GL.DisableClientState(ArrayCap.NormalArray);
-            GL.DisableClientState(ArrayCap.TextureCoordArray);
 
-            //GL.DrawArrays(PrimitiveType.Triangles, 0, modelBuffer.size);
-            //GL.DrawElements(
-            //GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-          //  GL.DisableClientState(ArrayCap.VertexArray);
+        public static void handleGLError()
+        {
+            var error = GL.GetError();
+            if (error != ErrorCode.NoError)
+            {
+
+                throw new Exception("GL ERROR: " + error.ToString());
+            }
         }
     }
 }

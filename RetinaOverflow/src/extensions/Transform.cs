@@ -23,7 +23,7 @@ namespace RetinaOverflow
             public static void rotate(this ITransformable transform, Quaternion rot)
             {
                 var trans = transform.getTransformation();
-                trans.rotation = Quaternion.Multiply(trans.rotation, rot);
+                trans.rotation = Quaternion.Multiply(trans.rotation, rot).Normalized();
             }
 
             public static Vector3 getPosition(this ITransformable transform)
@@ -63,8 +63,9 @@ namespace RetinaOverflow
             public static Matrix4 toMat4(this ITransformable transform)
             {
                 var trans = transform.getTransformation();
-
-                return Matrix4.Mult(Matrix4.CreateFromQuaternion(trans.rotation), Matrix4.CreateTranslation(trans.position));
+                trans.rotation.Normalize();
+                var rotationPart = Matrix4.CreateFromQuaternion(trans.rotation);
+                return Matrix4.Mult(rotationPart, Matrix4.CreateTranslation(trans.position));
             }
 
             public static Matrix4 rotationToMat4(this ITransformable transform)
