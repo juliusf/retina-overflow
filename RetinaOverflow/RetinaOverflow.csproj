@@ -64,7 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\drawing\Renderer.cs" />
     <Compile Include="src\Program.cs" />
+    <Compile Include="src\util\Exception\RetinaGLErrorException.cs" />
     <Compile Include="src\World.cs" />
     <Compile Include="src\GlobalManager.cs" />
     <Compile Include="src\util\Logging.cs" />

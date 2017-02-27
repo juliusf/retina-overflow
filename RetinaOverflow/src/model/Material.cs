@@ -42,11 +42,14 @@ namespace RetinaOverflow
         {
             try
             {
+                GlobalManager.instance.logging.info(String.Format("loading texture: {0}", diffuseTexturePath));
                 var fullDiffuseTexturePath = Path.Combine(Config.textureFolder, diffuseTexturePath);
                 m_diffuseTexId = loadTexture(fullDiffuseTexturePath);
+
             } 
             catch (System.ArgumentNullException)
             {
+                GlobalManager.instance.logging.warning(String.Format("texture {0} not found! using fallback", diffuseTexturePath));
                 m_diffuseTexId = fallbackID;
             }
         }

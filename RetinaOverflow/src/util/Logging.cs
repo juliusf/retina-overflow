@@ -5,7 +5,7 @@ using OpenTK.Graphics.ES11;
 
 namespace RetinaOverflow
 {
-	public struct LogEntry
+    public struct LogEntry
 	{
 		public ConsoleColor color;
 		public String text;

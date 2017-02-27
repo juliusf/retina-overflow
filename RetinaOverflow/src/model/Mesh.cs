@@ -5,6 +5,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK;
 using RetinaOverflow.Drawable;
+using RetinaOverflow.src.drawing;
 
 namespace RetinaOverflow
 {
@@ -63,29 +64,12 @@ namespace RetinaOverflow
         {
 
             GL.Enable(EnableCap.Texture2D);
-            handleGLError();
             GL.ActiveTexture(TextureUnit.Texture0);
-            handleGLError();
             GL.BindTexture(TextureTarget.Texture2D, material.diffuseTextureID);
-            handleGLError();
             GL.BindBuffer(BufferTarget.ArrayBuffer, ID_VBO);
-            handleGLError();
 
             GL.BindVertexArray(ID_VAO);
-            handleGLError();
             GL.DrawArrays(PrimitiveType.Triangles, 0, modelBuffer.size);
-            handleGLError();
-        }
-
-
-        public static void handleGLError()
-        {
-            var error = GL.GetError();
-            if (error != ErrorCode.NoError)
-            {
-
-                throw new Exception("GL ERROR: " + error.ToString());
-            }
         }
     }
 }

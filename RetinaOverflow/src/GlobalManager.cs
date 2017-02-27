@@ -32,7 +32,6 @@ namespace RetinaOverflow
         public Logging logging
         {
             get;
-            set;
         }
 
 

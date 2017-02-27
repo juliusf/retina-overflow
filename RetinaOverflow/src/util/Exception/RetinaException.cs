@@ -4,9 +4,12 @@ namespace RetinaOverflow
 {
     public class RetinaException : Exception
     {
-        // Dummy base class
-        public RetinaException(){}
-        public RetinaException(string message) : base(message){}
+        public RetinaException(){
+            GlobalManager.instance.logging.error(GetType().ToString());
+        }
+        public RetinaException(string message) : base(message){
+            GlobalManager.instance.logging.error(GetType() + ": " + message);
+        }
     }
 
    

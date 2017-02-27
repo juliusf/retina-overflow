@@ -10,6 +10,7 @@ using ObjLoader.Loader.Data;
 using RetinaOverflow.Transform;
 using System.Windows.Forms;
 using System.IO;
+using RetinaOverflow.src.drawing;
 
 namespace RetinaOverflow
 {
@@ -20,6 +21,8 @@ namespace RetinaOverflow
             GlobalManager.instance.logging.info("Retina Renderer starting");
             var theWorld = new World();
             theWorld.addModel("meshes/sponza.obj");
+
+            var renderer = new Renderer(theWorld);
             var camera = new Camera();
             World.activeCam = camera;
 
@@ -29,25 +32,19 @@ namespace RetinaOverflow
             MouseState current;
             MouseState previous = Mouse.GetState();
 
-            Matrix4 projectionMatrix = Matrix4.Identity;
-            int shaderProgram = 0;
+           
 
             using (var game = new GameWindow())
             {
                 game.Load += (sender, e) =>
                 {
-                    // setup settings, load textures, sounds
                     game.VSync = VSyncMode.On;
-                    shaderProgram = compileShaders();
-                    theWorld.initializeWorld();
-
+                    renderer.initialize();
                 };
 
                 game.Resize += (sender, e) =>
                 {
-                    GL.Viewport(0, 0, game.Width, game.Height);
-                    projectionMatrix = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, (float)game.Width / (float)game.Height, 1.0f, 3000.0f);
-                    GL.Enable(EnableCap.DepthTest);
+                    renderer.onResize(game.Width, game.Height);
                 };
 
                 game.UpdateFrame += (sender, e) =>
@@ -110,27 +107,10 @@ namespace RetinaOverflow
                             timeSinceLastUpdate += e.Time;
                         }
                     }
-
-
                     lastFrameTime = e.Time;
-                    // render graphics
+                    renderer.renderFrame();
 
-
-                    GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-                   
-                    var viewMatrix = World.activeCam.getViewMatrix();
-                    GL.UseProgram(shaderProgram);
-                    handleGLError();
-                    GL.UniformMatrix4(GL.GetUniformLocation(shaderProgram, "viewMatrix"), false, ref viewMatrix);
-                    handleGLError();
-                    GL.UniformMatrix4(GL.GetUniformLocation(shaderProgram, "projectionMatrix"), false, ref projectionMatrix);
-                    handleGLError();
-
-
-                    theWorld.draw();
-                    handleGLError();
                     game.SwapBuffers();
-                    handleGLError();
                 };
 
                 // Run the game at 60 updates per second
@@ -139,53 +119,8 @@ namespace RetinaOverflow
                 game.Title = "Retina Overflow";
                 game.CursorVisible = false;
 
-
-                var cursor = game.Cursor;
                 game.Run();
 
-            }
-        }
-
-        public static int compileShaders()
-        {
-            var vertexShader = GL.CreateShader(ShaderType.VertexShader);
-            GL.ShaderSource(vertexShader, File.ReadAllText(@"assets\shaders\vertexShader.glsl"));
-            GL.CompileShader(vertexShader);
-            handleShaderError(vertexShader);
-
-
-
-            var fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
-            GL.ShaderSource(fragmentShader, File.ReadAllText(@"assets\shaders\fragmentShader.glsl"));
-            GL.CompileShader(fragmentShader);
-            handleShaderError(fragmentShader);
-
-            var program = GL.CreateProgram();
-            GL.AttachShader(program, vertexShader);
-            GL.AttachShader(program, fragmentShader);
-            GL.LinkProgram(program);
-            //GL.DetachShader(program, vertexShader);
-            //GL.DetachShader(program, fragmentShader);
-            //GL.DeleteShader(vertexShader);
-            //GL.DeleteShader(fragmentShader);
-
-            return program;
-        }
-
-        public static void handleShaderError(int shader) {
-                String shaderInfo = "";
-                shaderInfo = GL.GetShaderInfoLog(shader);
-                if (shaderInfo != "")
-                {
-                    GlobalManager.instance.logging.error(shaderInfo);
-                }
-        }
-
-        public static void handleGLError() {
-            var error = GL.GetError();
-            if (error != ErrorCode.NoError) {
-
-                throw new Exception("GL ERROR: " + error.ToString());
             }
         }
     }

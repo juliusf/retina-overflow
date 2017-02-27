@@ -114,7 +114,7 @@ namespace RetinaOverflow
 
 
                 mesh.name = grp.Name;
-
+                GlobalManager.instance.logging.info(String.Format("loading Mesh: {0}", grp.Name));
                 if (! world.materials.ContainsKey(grp.Material.Name))
                 {
                     world.materials.Add(grp.Material.Name, MaterialFactory.createMaterial(grp.Material));

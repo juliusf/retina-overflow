@@ -19,7 +19,7 @@ namespace RetinaOverflow
             materials = new Dictionary<String, Material>();
         }
 
-        public void initializeWorld()
+        public void initializeContent()
         {
             foreach (var model in scene)
             {
@@ -30,8 +30,6 @@ namespace RetinaOverflow
             {
                 material.initialize();
             }
-
-            var foo = GL.IsVertexArray(1);
         }
 
         public void addModel(ref Model model)
@@ -41,6 +39,7 @@ namespace RetinaOverflow
 
         public void addModel(String modelPath)
         {
+            GlobalManager.instance.logging.info(String.Format("adding Model: {0}", modelPath));
             scene.Add(loader.loadModel(modelPath));  
         }
 
