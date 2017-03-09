@@ -77,10 +77,22 @@ namespace RetinaOverflow
                         camera.move(Vector3.Multiply(camera.getRightVector(), movementSpeed));
                     }
 
-                    if (game.Keyboard[Key.R])
+                    if (game.Keyboard[Key.E])
                     {
                         vase.move(Vector3.Multiply(new Vector3(1,0,0), movementSpeed));
                     }
+
+
+                    if (game.Keyboard[Key.Q])
+                    {
+                        vase.move(Vector3.Multiply(new Vector3(-1, 0, 0), movementSpeed));
+                    }
+
+                    if (game.Keyboard[Key.Number1])
+                    {
+                        renderer.light.position = camera.getPosition();
+                    }
+
 
                     current = Mouse.GetState();
                         if (current != previous)

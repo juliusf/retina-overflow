@@ -10,13 +10,21 @@ namespace RetinaOverflow
     {
         public String name;
         public String diffuseTexturePath;
+        public String bumpTexturePath;
+        public String specTexturePath;
 
         private static int fallbackID = -1;
         public int diffuseTextureID
         {
-            get{return m_diffuseTexId;}
+            get{return diffuseTexId;}
         }
-        private int m_diffuseTexId;
+
+        public int bumpMapTextureID { get { return bumpTexId; } }
+        public int specularTextureID { get { return specTexId; } }
+
+        private int diffuseTexId;
+        private int bumpTexId;
+        private int specTexId;
 
         public Material()
         {
@@ -40,17 +48,47 @@ namespace RetinaOverflow
         }
         private void loadTextures()
         {
+
+            // diffuse
             try
             {
                 GlobalManager.instance.logging.info(String.Format("loading texture: {0}", diffuseTexturePath));
                 var fullDiffuseTexturePath = Path.Combine(Config.textureFolder, diffuseTexturePath);
-                m_diffuseTexId = loadTexture(fullDiffuseTexturePath);
+                diffuseTexId = loadTexture(fullDiffuseTexturePath);
 
             } 
             catch (System.ArgumentNullException)
             {
                 GlobalManager.instance.logging.warning(String.Format("texture {0} not found! using fallback", diffuseTexturePath));
-                m_diffuseTexId = fallbackID;
+                diffuseTexId = fallbackID;
+            }
+
+            //bump
+            try
+            {
+                GlobalManager.instance.logging.info(String.Format("loading texture: {0}", bumpTexturePath));
+                var fullBumpTexturePath = Path.Combine(Config.textureFolder, bumpTexturePath);
+                bumpTexId = loadTexture(fullBumpTexturePath);
+
+            }
+            catch (System.ArgumentNullException)
+            {
+                GlobalManager.instance.logging.warning(String.Format("texture {0} not found! using fallback", bumpTexturePath));
+                bumpTexId = fallbackID;
+            }
+
+            //spec
+            try
+            {
+                GlobalManager.instance.logging.info(String.Format("loading texture: {0}", specTexturePath));
+                var fullSpecTexturePath = Path.Combine(Config.textureFolder, specTexturePath);
+                specTexId = loadTexture(fullSpecTexturePath);
+
+            }
+            catch (System.ArgumentNullException)
+            {
+                GlobalManager.instance.logging.warning(String.Format("texture {0} not found! using fallback", specTexturePath));
+                specTexId = fallbackID;
             }
         }
 

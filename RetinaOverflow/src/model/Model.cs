@@ -5,6 +5,7 @@ using OpenTK;
 using RetinaOverflow.Transform;
 using NUnit.Framework;
 using RetinaOverflow.Drawable;
+using RetinaOverflow.src.util.Exception;
 
 namespace RetinaOverflow
 {
@@ -12,7 +13,7 @@ namespace RetinaOverflow
     {
         private Transformation transform;
 
-        public string name { get; set; }
+        public string name;
         private string materialName;
         private string materialFile;
         private List<Mesh> meshes;
@@ -35,7 +36,15 @@ namespace RetinaOverflow
 
         public Mesh getMeshForName(String meshName)
         {
-            var idx = meshNames[meshName];
+            int idx = -1;
+            try {
+              idx   = meshNames[meshName];
+            }
+            catch (KeyNotFoundException)
+            {
+                GlobalManager.instance.logging.error(String.Format("Could not find requested Mesh: {0}", meshName));
+                throw new RetinaGLErrorException("mesh not found: " + meshName);
+            }
             return meshes[idx];
         }
 

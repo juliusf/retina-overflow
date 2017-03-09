@@ -9,6 +9,8 @@ using System.Text;
 
 namespace RetinaOverflow.src.drawing
 {
+
+
     public class Renderer
     {
         World world;
@@ -16,9 +18,15 @@ namespace RetinaOverflow.src.drawing
         public int shaderID { get { return SHADERID; } }
         int SHADERID = -1;
 
-        
+        public Light light;
+
         public void initialize(World world) {
             this.world = world;
+
+            this.light = new Light();
+            light.intensity = new Vector3(1,1,1);
+            light.position = Vector3.One;
+
             SHADERID = compileShaders();
             world.initializeContent();
         }
@@ -37,6 +45,10 @@ namespace RetinaOverflow.src.drawing
             GL.UseProgram(SHADERID);
             GL.UniformMatrix4(GL.GetUniformLocation(SHADERID, "viewMatrix"), false, ref viewMatrix);
             GL.UniformMatrix4(GL.GetUniformLocation(SHADERID, "projectionMatrix"), false, ref projectionMatrix);
+
+            GL.Uniform3(GL.GetUniformLocation(SHADERID, "light.position"), light.position);
+            GL.Uniform3(GL.GetUniformLocation(SHADERID, "light.intensity"), light.intensity);
+
             world.draw();
         }
 

@@ -12,6 +12,8 @@ namespace RetinaOverflow
             var material = new Material();
             material.name = loaderMaterial.Name;
             material.diffuseTexturePath = loaderMaterial.DiffuseTextureMap;
+            material.bumpTexturePath = loaderMaterial.BumpMap;
+            material.specTexturePath = loaderMaterial.SpecularTextureMap;
             return material;
         }
     }

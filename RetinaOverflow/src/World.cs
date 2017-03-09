@@ -56,6 +56,7 @@ namespace RetinaOverflow
             catch (KeyNotFoundException)
             {
                 GlobalManager.instance.logging.warning(String.Format("Could not find requested model: {0}", modelName));
+                return new Model();
             }
             
             return scene[idx];
