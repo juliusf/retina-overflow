@@ -15,6 +15,8 @@ namespace RetinaOverflow
 
         public static class TransformExtension
         {
+            public static Vector3 worldRight { get{ return new Vector3(1, 0, 0); } }
+            public static Vector3 worldUp { get { return new Vector3(0, 1, 0); } }
             public static void move(this ITransformable transform, Vector3 direction)
             {
                 transform.getTransformation().position = Vector3.Add(transform.getTransformation().position, direction);

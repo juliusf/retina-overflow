@@ -20,9 +20,9 @@ namespace RetinaOverflow
         {
             GlobalManager.instance.logging.info("Retina Renderer starting");
             var theWorld = new World();
+            var renderer = GlobalManager.instance.renderer;
             theWorld.addModel("meshes/sponza.obj");
-
-            var renderer = new Renderer(theWorld);
+            
             var camera = new Camera();
             World.activeCam = camera;
 
@@ -32,14 +32,14 @@ namespace RetinaOverflow
             MouseState current;
             MouseState previous = Mouse.GetState();
 
-           
+            Mesh vase = theWorld.getModelForName("meshes/sponza.obj").getMeshForName("sponza_01");
 
             using (var game = new GameWindow())
             {
                 game.Load += (sender, e) =>
                 {
                     game.VSync = VSyncMode.On;
-                    renderer.initialize();
+                    renderer.initialize(theWorld);
                 };
 
                 game.Resize += (sender, e) =>
@@ -76,7 +76,13 @@ namespace RetinaOverflow
                     {
                         camera.move(Vector3.Multiply(camera.getRightVector(), movementSpeed));
                     }
-                        current = Mouse.GetState();
+
+                    if (game.Keyboard[Key.R])
+                    {
+                        vase.move(Vector3.Multiply(new Vector3(1,0,0), movementSpeed));
+                    }
+
+                    current = Mouse.GetState();
                         if (current != previous)
                         {
                             float mouseSpeed = 0.05f * (float) e.Time;

@@ -62,7 +62,10 @@ namespace RetinaOverflow
 
         public void draw()
         {
+            var modelMatrix = this.toMat4();
+            var shaderID = GlobalManager.instance.renderer.shaderID;
 
+            GL.UniformMatrix4(GL.GetUniformLocation(shaderID, "modelMatrix"), false, ref modelMatrix);
             GL.Enable(EnableCap.Texture2D);
             GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, material.diffuseTextureID);

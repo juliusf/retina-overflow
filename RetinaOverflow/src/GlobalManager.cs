@@ -2,6 +2,7 @@
 using OpenTK;
 using OpenTK.Input;
 using RetinaOverflow;
+using RetinaOverflow.src.drawing;
 
 namespace RetinaOverflow
 {
@@ -14,6 +15,7 @@ namespace RetinaOverflow
         {
             this.game = new GameWindow();
             this.logging = new Logging();
+            this.renderer = new Renderer();
         }
 
         public static GlobalManager instance
@@ -30,6 +32,11 @@ namespace RetinaOverflow
         }
 
         public Logging logging
+        {
+            get;
+        }
+
+        public Renderer renderer
         {
             get;
         }

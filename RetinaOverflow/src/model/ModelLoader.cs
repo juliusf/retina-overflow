@@ -25,7 +25,7 @@ namespace RetinaOverflow
         public Model loadModel(String modelFile)
         {   
             var theModel = new Model();
-            
+            theModel.name = modelFile;
             var filePath = Path.Combine(Config.assetFolder, modelFile);
 
             var objLoaderFactory = new ObjLoaderFactory();

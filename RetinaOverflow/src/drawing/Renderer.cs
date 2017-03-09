@@ -9,19 +9,17 @@ using System.Text;
 
 namespace RetinaOverflow.src.drawing
 {
-    class Renderer
+    public class Renderer
     {
         World world;
         Matrix4 projectionMatrix = Matrix4.Identity;
+        public int shaderID { get { return SHADERID; } }
+        int SHADERID = -1;
 
-        int ID_SHADER = -1;
-
-        public Renderer(World world) {
+        
+        public void initialize(World world) {
             this.world = world;
-        }
-
-        public void initialize() {
-            ID_SHADER = compileShaders();
+            SHADERID = compileShaders();
             world.initializeContent();
         }
 
@@ -36,9 +34,9 @@ namespace RetinaOverflow.src.drawing
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             var viewMatrix = World.activeCam.getViewMatrix();
-            GL.UseProgram(ID_SHADER);
-            GL.UniformMatrix4(GL.GetUniformLocation(ID_SHADER, "viewMatrix"), false, ref viewMatrix);
-            GL.UniformMatrix4(GL.GetUniformLocation(ID_SHADER, "projectionMatrix"), false, ref projectionMatrix);
+            GL.UseProgram(SHADERID);
+            GL.UniformMatrix4(GL.GetUniformLocation(SHADERID, "viewMatrix"), false, ref viewMatrix);
+            GL.UniformMatrix4(GL.GetUniformLocation(SHADERID, "projectionMatrix"), false, ref projectionMatrix);
             world.draw();
         }
 

@@ -12,23 +12,31 @@ namespace RetinaOverflow
     {
         private Transformation transform;
 
-        public string name;
-        public string materialName;
-        public string materialFile;
-        public List<Mesh> meshes;
-        public bool drawAxes = false;
-
+        public string name { get; set; }
+        private string materialName;
+        private string materialFile;
+        private List<Mesh> meshes;
+        private Dictionary<String, int> meshNames;
+        private bool drawAxes = false;
 
         public Model()
         {
             this.transform = new Transformation();
             this.meshes = new List<Mesh>();
+            this.meshNames = new Dictionary<string, int>();
         }
 
         public void addMesh(ref Mesh mesh)
         {
             mesh.getTransformation().parent = this;
+            meshNames.Add(mesh.name, meshes.Count);
             meshes.Add(mesh);
+        }
+
+        public Mesh getMeshForName(String meshName)
+        {
+            var idx = meshNames[meshName];
+            return meshes[idx];
         }
 
         public void initialize()
