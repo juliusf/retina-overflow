@@ -8,15 +8,15 @@ namespace RetinaOverflow
         private List<Model> scene; // TODO: Convert to octree or similar fast data Structure
         private ModelLoader loader;
 
-        public Dictionary<String, Material> materials;
-        private Dictionary<String, int> modelNames;
+        public Dictionary<string, Material> materials;
+        private Dictionary<string, int> modelNames;
         public static Camera activeCam;
 
         public World()
         {
             scene = new List<Model>();
             loader = new ModelLoader(this);
-            materials = new Dictionary<String, Material>();
+            materials = new Dictionary<string, Material>();
             modelNames = new Dictionary<string, int>();
         }
 
@@ -38,7 +38,7 @@ namespace RetinaOverflow
             scene.Add(model);
         }
 
-        public void addModel(String modelPath)
+        public void addModel(string modelPath)
         {
             GlobalManager.instance.logging.info(String.Format("adding Model: {0}", modelPath));
             var model = loader.loadModel(modelPath);

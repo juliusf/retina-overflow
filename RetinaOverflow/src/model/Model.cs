@@ -3,7 +3,6 @@ using OpenTK.Graphics.OpenGL;
 using System.Collections.Generic;
 using OpenTK;
 using RetinaOverflow.Transform;
-using NUnit.Framework;
 using RetinaOverflow.Drawable;
 using RetinaOverflow.src.util.Exception;
 

@@ -93,21 +93,23 @@ namespace RetinaOverflow
                         renderer.light.position = camera.getPosition();
                     }
 
+                    if (game.Keyboard[Key.R])
+                    {
+                        World.activeCam.reset();
+                    }
+
 
                     current = Mouse.GetState();
-                        if (current != previous)
-                        {
-                            float mouseSpeed = 0.05f * (float) e.Time;
-                            int xdelta = current.X - previous.X;
-                            int ydelta = current.Y  - previous.Y;
-                            int zdelta = current.Wheel - previous.Wheel;
-                            camera.look(xdelta * mouseSpeed, ydelta * mouseSpeed);
-
-                        }
-                        previous = current;
-                       // Mouse.SetPosition(game.Bounds.Left + game.Bounds.Width / 2, game.Bounds.Top + game.Bounds.Height / 2); // reset mouse to mid of screen in order to grab
-                   
-
+                    //if (current != previous)
+                    {
+                        float mouseSpeed = 0.2f;
+                        int xdelta = previous.X - current.X;
+                        int ydelta = previous.Y - current.Y;
+                        int zdelta = current.Wheel - previous.Wheel;
+                        camera.look(Angle.FromDegrees(xdelta * mouseSpeed), Angle.FromDegrees(ydelta * mouseSpeed));
+                    }
+                    previous = current;
+                    // Mouse.SetPosition(game.Bounds.Left + game.Bounds.Width / 2, game.Bounds.Top + game.Bounds.Height / 2); // reset mouse to mid of screen in order to grab
                 };
 
                 game.RenderFrame += (sender, e) =>

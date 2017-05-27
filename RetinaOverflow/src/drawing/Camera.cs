@@ -9,10 +9,19 @@ namespace RetinaOverflow
     {
 
         private Transformation transform;
+        private Angle absolutePitch;
+        private Angle absoluteYaw;
 
         public Camera()
         {
             this.transform = new Transformation();
+        }
+
+        public void reset()
+        {
+            transform = new Transformation();
+            absolutePitch = new Angle();
+            absoluteYaw = new Angle();
         }
 
         public Matrix4 getViewMatrix()
@@ -47,16 +56,19 @@ namespace RetinaOverflow
             transform.rotation = lookAtMatrix.ExtractRotation(true);
         }
 
-        public void look(float deltaX, float deltaY)
-        {
-            var transform = this.getTransformation();
-            var rotation = this.getTransformation().rotation;
 
-            var qy = Quaternion.FromAxisAngle(new Vector3(1, 0, 0), -deltaY);
-            var qx = Quaternion.FromAxisAngle(new Vector3(0, -1,0), deltaX);
-            
-            this.rotate(qy.Normalized());
-            this.rotate(qx.Normalized());
+
+        public void look(Angle deltaYaw, Angle deltaPitch)
+        {
+            absolutePitch += deltaPitch;
+            absoluteYaw += deltaYaw;
+     
+            Quaternion yawQuat = Quaternion.FromAxisAngle(Transformation.worldUp, absoluteYaw.Radians);
+            Quaternion pitchQuat = Quaternion.FromAxisAngle(Transformation.worldRight, absolutePitch.Radians);
+      
+            var transform = this.getTransformation();
+
+            transform.rotation = yawQuat * pitchQuat;
         }
     }
 }

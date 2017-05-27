@@ -7,7 +7,6 @@ using ObjLoader.Loader.Data;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System.Runtime.InteropServices;
-using NUnit.Framework;
 using System.Windows.Forms.VisualStyles;
 using System.Security.Authentication.ExtendedProtection;
 using System.Diagnostics;

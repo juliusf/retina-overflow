@@ -3,7 +3,6 @@ using System.IO;
 using System.Drawing.Drawing2D;
 using System.Collections.Generic;
 using System.Diagnostics;
-using NUnit.Framework;
 using OpenTK;
 using ObjLoader.Loader.Loaders;
 using ObjLoader.Loader.Data;
